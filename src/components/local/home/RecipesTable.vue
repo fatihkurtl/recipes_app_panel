@@ -5,7 +5,7 @@ import { RouterLink } from 'vue-router'
 </script>
 
 <template>
-    <section class="bg-gray-50 dark:bg-gray-700 p-3 sm:p-5">
+    <section class="bg-gray-200 dark:bg-gray-700 p-3 sm:p-5">
         <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
             <!-- Start coding here -->
             <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
@@ -138,7 +138,8 @@ import { RouterLink } from 'vue-router'
                                 <th scope="col" class="px-4 py-3">Category</th>
                                 <th scope="col" class="px-4 py-3">Active</th>
                                 <th scope="col" class="px-4 py-3">Description</th>
-                                <th scope="col" class="px-4 py-3">Price</th>
+                                <th scope="col" class="px-4 py-3">Number of saves</th>
+                                <th scope="col" class="px-4 py-3">Popular recipes</th>
                                 <th scope="col" class="px-4 py-3">
                                     <span class="sr-only">Actions</span>
                                 </th>
@@ -164,6 +165,7 @@ import { RouterLink } from 'vue-router'
                                 <td class="px-4 py-3">Apple</td>
                                 <td class="px-4 py-3">300</td>
                                 <td class="px-4 py-3">$2999</td>
+                                <td class="px-4 py-3">Yes</td>
                                 <td class="px-4 py-3 flex items-center justify-end">
                                     <button id="apple-imac-34-dropdown-button"
                                         data-dropdown-toggle="apple-imac-34-dropdown"
@@ -215,6 +217,7 @@ import { RouterLink } from 'vue-router'
                                 <td class="px-4 py-3">Apple</td>
                                 <td class="px-4 py-3">300</td>
                                 <td class="px-4 py-3">$2999</td>
+                                <td class="px-4 py-3">Yes</td>
                                 <td class="px-4 py-3 flex items-center justify-end">
                                     <button id="apple-imac-28-dropdown-button"
                                         data-dropdown-toggle="apple-imac-28-dropdown"
@@ -265,6 +268,7 @@ import { RouterLink } from 'vue-router'
                                 <td class="px-4 py-3">Apple</td>
                                 <td class="px-4 py-3">300</td>
                                 <td class="px-4 py-3">$2999</td>
+                                <td class="px-4 py-3">No</td>
                                 <td class="px-4 py-3 flex items-center justify-end">
                                     <button id="apple-imac-29-dropdown-button"
                                         data-dropdown-toggle="apple-imac-29-dropdown"
@@ -315,6 +319,7 @@ import { RouterLink } from 'vue-router'
                                 <td class="px-4 py-3">Apple</td>
                                 <td class="px-4 py-3">300</td>
                                 <td class="px-4 py-3">$3999</td>
+                                <td class="px-4 py-3">No</td>
                                 <td class="px-4 py-3 flex items-center justify-end">
                                     <button id="-2-dropdown-button" data-dropdown-toggle="2-dropdown-button"
                                         class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100"
@@ -364,6 +369,7 @@ import { RouterLink } from 'vue-router'
                                 <td class="px-4 py-3">Apple</td>
                                 <td class="px-4 py-3">300</td>
                                 <td class="px-4 py-3">$2999</td>
+                                <td class="px-4 py-3">Yes</td>
                                 <td class="px-4 py-3 flex items-center justify-end">
                                     <button id="apple-imac-31-dropdown-button"
                                         data-dropdown-toggle="apple-imac-31-dropdown"
@@ -414,6 +420,7 @@ import { RouterLink } from 'vue-router'
                                 <td class="px-4 py-3">Apple</td>
                                 <td class="px-4 py-3">300</td>
                                 <td class="px-4 py-3">$2999</td>
+                                <td class="px-4 py-3">Yes</td>
                                 <td class="px-4 py-3 flex items-center justify-end">
                                     <button id="apple-imac-32-dropdown-button"
                                         data-dropdown-toggle="apple-imac-32-dropdown"
@@ -464,6 +471,7 @@ import { RouterLink } from 'vue-router'
                                 <td class="px-4 py-3">Apple</td>
                                 <td class="px-4 py-3">300</td>
                                 <td class="px-4 py-3">$2999</td>
+                                <td class="px-4 py-3">No</td>
                                 <td class="px-4 py-3 flex items-center justify-end">
                                     <button id="apple-imac-33-dropdown-button"
                                         data-dropdown-toggle="apple-imac-33-dropdown"

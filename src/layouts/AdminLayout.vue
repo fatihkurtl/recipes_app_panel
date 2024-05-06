@@ -12,7 +12,7 @@ onMounted(() => {
 
 <template>
     <NavbarLayout />
-    <div class="bg-gray-700 mx-auto max-w-full px-2 py-2">
+    <div class="bg-gray-200 mx-auto max-w-full px-2 py-2">
         <slot />
     </div>
     <FooterLayout />
