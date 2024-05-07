@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/admin/HomeView.vue'
+import DetailView from '@/views/admin/DetailView.vue'
 import AddRecipesView from '@/views/admin/AddRecipesView.vue'
 import EditRecipesView from '@/views/admin/EditRecipesView.vue'
-import DetailView from '@/views/admin/DetailView.vue'
 import UsersView from '@/views/admin/UsersView.vue'
 import AboutView from '@/views/admin/AboutView.vue'
 import ContactView from '@/views/admin/ContactView.vue'
@@ -54,6 +54,6 @@ const router = createRouter({
   ]
 })
 
-router.beforeEach(() => {})
+// router.beforeEach(() => {})
 
 export default router

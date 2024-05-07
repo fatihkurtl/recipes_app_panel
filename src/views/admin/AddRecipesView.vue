@@ -44,7 +44,7 @@ const handleRecipeFile = (event: any): void => {
                             Name</label>
                         <input v-model="recipeData.name" type="text" name="name" id="name"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Type product name" required>
+                            placeholder="Type recipe name" required>
                     </div>
                     <div class="sm:col-span-2">
                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -111,7 +111,7 @@ const handleRecipeFile = (event: any): void => {
                         <label for="preview"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Preview</label>
                         <div v-html="output"
-                            class="block p-2.5 w-full h-full text-sm bg-gray-50 rounded-lg border border-gray-300 prose prose-blockquote:dark:bg-gray-600 prose-blockquote:bg-gray-200 prose-img:rounded-xl md:prose-lg lg:prose-xl dark:prose-invert max-w-none dark:text-gray-100 prose-p text-gray-700 mb-4">
+                            class="block p-2.5 w-full h-full text-sm bg-gray-50 rounded-lg border border-gray-300 prose prose-blockquote:dark:bg-gray-600 prose-blockquote:bg-gray-200 prose-img:rounded-xl md:prose-sm lg:prose-sm dark:prose-invert max-w-none dark:text-gray-100 prose-p text-gray-700 mb-4">
                         </div>
                     </div>
                 </div>

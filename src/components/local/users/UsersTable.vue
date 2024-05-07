@@ -189,10 +189,9 @@ import NotificationIcon from './NotificationIcon.vue';
                                         <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
                                             aria-labelledby="apple-imac-34-dropdown-button">
                                             <li>
-                                                <a href="#" id="crud-modal" data-modal-target="crud-modal"
-                                                    data-modal-toggle="crud-modal" type="button"
+                                                <a href="#" type="button"
                                                     class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                                                    Send notification
+                                                    Send email
                                                 </a>
                                             </li>
                                             <li>
@@ -248,10 +247,9 @@ import NotificationIcon from './NotificationIcon.vue';
                                         <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
                                             aria-labelledby="apple-imac-28-dropdown-button">
                                             <li>
-                                                <a href="#" id="crud-modal" data-modal-target="crud-modal"
-                                                    data-modal-toggle="crud-modal" type="button"
+                                                <a href="#" type="button"
                                                     class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                                                    Send notification
+                                                    Send email
                                                 </a>
                                             </li>
                                             <li>
@@ -306,10 +304,9 @@ import NotificationIcon from './NotificationIcon.vue';
                                         <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
                                             aria-labelledby="apple-imac-29-dropdown-button">
                                             <li>
-                                                <a href="#" id="crud-modal" data-modal-target="crud-modal"
-                                                    data-modal-toggle="crud-modal" type="button"
+                                                <a href="#" type="button"
                                                     class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                                                    Send notification
+                                                    Send email
                                                 </a>
                                             </li>
                                             <li>
@@ -363,10 +360,9 @@ import NotificationIcon from './NotificationIcon.vue';
                                         <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
                                             aria-labelledby="2-dropdown-button">
                                             <li>
-                                                <a href="#" id="crud-modal" data-modal-target="crud-modal"
-                                                    data-modal-toggle="crud-modal" type="button"
+                                                <a href="#" type="button"
                                                     class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                                                    Send notification
+                                                    Send email
                                                 </a>
                                             </li>
                                             <li>
@@ -421,10 +417,9 @@ import NotificationIcon from './NotificationIcon.vue';
                                         <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
                                             aria-labelledby="apple-imac-31-dropdown-button">
                                             <li>
-                                                <a href="#" id="crud-modal" data-modal-target="crud-modal"
-                                                    data-modal-toggle="crud-modal" type="button"
+                                                <a href="#" type="button"
                                                     class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                                                    Send notification
+                                                    Send email
                                                 </a>
                                             </li>
                                             <li>
@@ -479,10 +474,9 @@ import NotificationIcon from './NotificationIcon.vue';
                                         <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
                                             aria-labelledby="apple-imac-32-dropdown-button">
                                             <li>
-                                                <a href="#" id="crud-modal" data-modal-target="crud-modal"
-                                                    data-modal-toggle="crud-modal" type="button"
+                                                <a href="#" type="button"
                                                     class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                                                    Send notification
+                                                    Send email
                                                 </a>
                                             </li>
                                             <li>
@@ -537,10 +531,9 @@ import NotificationIcon from './NotificationIcon.vue';
                                         <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
                                             aria-labelledby="apple-imac-33-dropdown-button">
                                             <li>
-                                                <a href="#" id="crud-modal" data-modal-target="crud-modal"
-                                                    data-modal-toggle="crud-modal" type="button"
+                                                <a href="#" type="button"
                                                     class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                                                    Send notification
+                                                    Send email
                                                 </a>
                                             </li>
                                             <li>
