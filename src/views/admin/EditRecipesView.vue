@@ -25,7 +25,7 @@ const editRecipe = (): void => {
     console.log('Recipe data', recipeData);
 }
 
-const handleRecipeFile = (event: any) => {
+const handleRecipeFile = (event: any): void => {
     event.preventDefault()
     console.log('File', event.target.files);
     recipeData.thumbnail = event.target.files;
