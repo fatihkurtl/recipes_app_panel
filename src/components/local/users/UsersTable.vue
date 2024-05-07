@@ -1,10 +1,13 @@
 <script setup lang="ts">
-import { RouterLink } from 'vue-router'
+import type { RouterLink } from 'vue-router';
+import NotificationModal from './NotificationModal.vue';
+import NotificationIcon from './NotificationIcon.vue';
 
 
 </script>
 
 <template>
+    <NotificationModal />
     <section class="bg-gray-200 dark:bg-gray-700 p-3 sm:p-5">
         <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
             <!-- Start coding here -->
@@ -31,22 +34,16 @@ import { RouterLink } from 'vue-router'
                     </div>
                     <div
                         class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
-                        <button type="button"
+                        <button type="button" id="crud-modal" data-modal-target="crud-modal"
+                            data-modal-toggle="crud-modal"
                             class="flex items-center justify-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                             <!-- <svg class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                 <path clip-rule="evenodd" fill-rule="evenodd"
                                     d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
                             </svg> -->
-                            <svg class="h-3.5 w-3.5 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="M5 12h14m-7 7V5" />
-                            </svg>
-
-                            <RouterLink to="/add/recipe">
-                                Add recipe
-                            </RouterLink>
+                            <NotificationIcon />
+                            Send bulk notification
                         </button>
                         <div class="flex items-center space-x-3 w-full md:w-auto">
                             <button id="actionsDropdownButton" data-dropdown-toggle="actionsDropdown"
@@ -93,23 +90,23 @@ import { RouterLink } from 'vue-router'
                             </button>
                             <div id="filterDropdown"
                                 class="z-10 hidden w-48 p-3 bg-white rounded-lg shadow dark:bg-gray-700">
-                                <h6 class="mb-3 text-sm font-medium text-gray-900 dark:text-white">Choose category</h6>
+                                <h6 class="mb-3 text-sm font-medium text-gray-900 dark:text-white">Choose status</h6>
                                 <ul class="space-y-2 text-sm" aria-labelledby="filterDropdownButton">
                                     <li class="flex items-center">
                                         <input id="apple" type="checkbox" value=""
                                             class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-blue-600 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                         <label for="apple"
-                                            class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">Apple
+                                            class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">Active
                                             (56)</label>
                                     </li>
                                     <li class="flex items-center">
                                         <input id="fitbit" type="checkbox" value=""
                                             class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-blue-600 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                         <label for="fitbit"
-                                            class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">Microsoft
+                                            class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">Inactive
                                             (16)</label>
                                     </li>
-                                    <li class="flex items-center">
+                                    <!-- <li class="flex items-center">
                                         <input id="razor" type="checkbox" value=""
                                             class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-blue-600 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                         <label for="razor"
@@ -129,7 +126,7 @@ import { RouterLink } from 'vue-router'
                                         <label for="benq"
                                             class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">BenQ
                                             (74)</label>
-                                    </li>
+                                    </li> -->
                                 </ul>
                             </div>
                         </div>
@@ -140,12 +137,12 @@ import { RouterLink } from 'vue-router'
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
                                 <th scope="col" class="px-4 py-3"></th>
-                                <th scope="col" class="px-4 py-3">Recipes name</th>
-                                <th scope="col" class="px-4 py-3">Category</th>
-                                <th scope="col" class="px-4 py-3">Active</th>
-                                <th scope="col" class="px-4 py-3">Description</th>
-                                <th scope="col" class="px-4 py-3">Number of saves</th>
-                                <th scope="col" class="px-4 py-3">Popular recipes</th>
+                                <th scope="col" class="px-4 py-3">User</th>
+                                <!-- <th scope="col" class="px-4 py-3">Username</th>
+                                <th scope="col" class="px-4 py-3">Email</th> -->
+                                <th scope="col" class="px-4 py-3">Status</th>
+                                <th scope="col" class="px-4 py-3">Number of registered recipes</th>
+                                <th scope="col" class="px-4 py-3">Membership date</th>
                                 <th scope="col" class="px-4 py-3">
                                     <span class="sr-only">Actions</span>
                                 </th>
@@ -162,15 +159,19 @@ import { RouterLink } from 'vue-router'
                                     </div>
                                 </td>
                                 <th scope="row"
-                                    class="flex items-center px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    <img src="https://flowbite.s3.amazonaws.com/blocks/application-ui/products/imac-front-image.png"
-                                        alt="iMac Front Image" class="w-auto h-8 mr-3">
-                                    Apple iMac 27&#34;
+                                    class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                    <img class="w-10 h-10 rounded-full"
+                                        src="https://cdn-icons-png.freepik.com/256/6323/6323096.png?semt=ais_hybrid"
+                                        alt="Jese image">
+                                    <div class="ps-3">
+                                        <div class="text-base font-semibold">Neil Sims</div>
+                                        <div class="font-normal text-gray-500">neil.sims@flowbite.com</div>
+                                    </div>
                                 </th>
                                 <td class="px-4 py-3">PC</td>
                                 <td class="px-4 py-3">Apple</td>
-                                <td class="px-4 py-3">300</td>
-                                <td class="px-4 py-3">$2999</td>
+                                <!-- <td class="px-4 py-3">300</td>
+                                <td class="px-4 py-3">$2999</td> -->
                                 <td class="px-4 py-3">Yes</td>
                                 <td class="px-4 py-3 flex items-center justify-end">
                                     <button id="apple-imac-34-dropdown-button"
@@ -188,8 +189,11 @@ import { RouterLink } from 'vue-router'
                                         <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
                                             aria-labelledby="apple-imac-34-dropdown-button">
                                             <li>
-                                                <a href="/recipes/recipe_name"
-                                                    class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</a>
+                                                <a href="#" id="crud-modal" data-modal-target="crud-modal"
+                                                    data-modal-toggle="crud-modal" type="button"
+                                                    class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                                    Send notification
+                                                </a>
                                             </li>
                                             <li>
                                                 <RouterLink to="/edit/recipes_name"
@@ -214,15 +218,19 @@ import { RouterLink } from 'vue-router'
                                     </div>
                                 </td>
                                 <th scope="row"
-                                    class="flex items-center px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    <img src="https://flowbite.s3.amazonaws.com/blocks/application-ui/products/imac-front-image.png"
-                                        alt="iMac Front Image" class="w-auto h-8 mr-3">
-                                    Apple iMac 27&#34;
+                                    class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                    <img class="w-10 h-10 rounded-full"
+                                        src="https://cdn-icons-png.freepik.com/256/6323/6323096.png?semt=ais_hybrid"
+                                        alt="Jese image">
+                                    <div class="ps-3">
+                                        <div class="text-base font-semibold">Neil Sims</div>
+                                        <div class="font-normal text-gray-500">neil.sims@flowbite.com</div>
+                                    </div>
                                 </th>
                                 <td class="px-4 py-3">PC</td>
                                 <td class="px-4 py-3">Apple</td>
-                                <td class="px-4 py-3">300</td>
-                                <td class="px-4 py-3">$2999</td>
+                                <!-- <td class="px-4 py-3">300</td>
+                                <td class="px-4 py-3">$2999</td> -->
                                 <td class="px-4 py-3">Yes</td>
                                 <td class="px-4 py-3 flex items-center justify-end">
                                     <button id="apple-imac-28-dropdown-button"
@@ -240,8 +248,11 @@ import { RouterLink } from 'vue-router'
                                         <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
                                             aria-labelledby="apple-imac-28-dropdown-button">
                                             <li>
-                                                <a href="#"
-                                                    class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</a>
+                                                <a href="#" id="crud-modal" data-modal-target="crud-modal"
+                                                    data-modal-toggle="crud-modal" type="button"
+                                                    class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                                    Send notification
+                                                </a>
                                             </li>
                                             <li>
                                                 <a href="#"
@@ -265,15 +276,19 @@ import { RouterLink } from 'vue-router'
                                     </div>
                                 </td>
                                 <th scope="row"
-                                    class="flex items-center px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    <img src="https://flowbite.s3.amazonaws.com/blocks/application-ui/products/imac-front-image.png"
-                                        alt="iMac Front Image" class="w-auto h-8 mr-3">
-                                    Apple iMac 27&#34;
+                                    class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                    <img class="w-10 h-10 rounded-full"
+                                        src="https://cdn-icons-png.freepik.com/256/6323/6323096.png?semt=ais_hybrid"
+                                        alt="Jese image">
+                                    <div class="ps-3">
+                                        <div class="text-base font-semibold">Neil Sims</div>
+                                        <div class="font-normal text-gray-500">neil.sims@flowbite.com</div>
+                                    </div>
                                 </th>
                                 <td class="px-4 py-3">PC</td>
                                 <td class="px-4 py-3">Apple</td>
-                                <td class="px-4 py-3">300</td>
-                                <td class="px-4 py-3">$2999</td>
+                                <!-- <td class="px-4 py-3">300</td>
+                                <td class="px-4 py-3">$2999</td> -->
                                 <td class="px-4 py-3">No</td>
                                 <td class="px-4 py-3 flex items-center justify-end">
                                     <button id="apple-imac-29-dropdown-button"
@@ -291,8 +306,11 @@ import { RouterLink } from 'vue-router'
                                         <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
                                             aria-labelledby="apple-imac-29-dropdown-button">
                                             <li>
-                                                <a href="#"
-                                                    class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</a>
+                                                <a href="#" id="crud-modal" data-modal-target="crud-modal"
+                                                    data-modal-toggle="crud-modal" type="button"
+                                                    class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                                    Send notification
+                                                </a>
                                             </li>
                                             <li>
                                                 <a href="#"
@@ -316,15 +334,19 @@ import { RouterLink } from 'vue-router'
                                     </div>
                                 </td>
                                 <th scope="row"
-                                    class="flex items-center px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    <img src="https://flowbite.s3.amazonaws.com/blocks/application-ui/products/imac-front-image.png"
-                                        alt="iMac Front Image" class="w-auto h-8 mr-3">
-                                    Apple iMac 27&#34;
+                                    class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                    <img class="w-10 h-10 rounded-full"
+                                        src="https://cdn-icons-png.freepik.com/256/6323/6323096.png?semt=ais_hybrid"
+                                        alt="Jese image">
+                                    <div class="ps-3">
+                                        <div class="text-base font-semibold">Neil Sims</div>
+                                        <div class="font-normal text-gray-500">neil.sims@flowbite.com</div>
+                                    </div>
                                 </th>
                                 <td class="px-4 py-3">PC</td>
                                 <td class="px-4 py-3">Apple</td>
-                                <td class="px-4 py-3">300</td>
-                                <td class="px-4 py-3">$3999</td>
+                                <!-- <td class="px-4 py-3">300</td>
+                                <td class="px-4 py-3">$3999</td> -->
                                 <td class="px-4 py-3">No</td>
                                 <td class="px-4 py-3 flex items-center justify-end">
                                     <button id="-2-dropdown-button" data-dropdown-toggle="2-dropdown-button"
@@ -341,8 +363,11 @@ import { RouterLink } from 'vue-router'
                                         <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
                                             aria-labelledby="2-dropdown-button">
                                             <li>
-                                                <a href="#"
-                                                    class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</a>
+                                                <a href="#" id="crud-modal" data-modal-target="crud-modal"
+                                                    data-modal-toggle="crud-modal" type="button"
+                                                    class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                                    Send notification
+                                                </a>
                                             </li>
                                             <li>
                                                 <a href="#"
@@ -366,15 +391,19 @@ import { RouterLink } from 'vue-router'
                                     </div>
                                 </td>
                                 <th scope="row"
-                                    class="flex items-center px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    <img src="https://flowbite.s3.amazonaws.com/blocks/application-ui/products/imac-front-image.png"
-                                        alt="iMac Front Image" class="w-auto h-8 mr-3">
-                                    Apple iMac 27&#34;
+                                    class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                    <img class="w-10 h-10 rounded-full"
+                                        src="https://cdn-icons-png.freepik.com/256/6323/6323096.png?semt=ais_hybrid"
+                                        alt="Jese image">
+                                    <div class="ps-3">
+                                        <div class="text-base font-semibold">Neil Sims</div>
+                                        <div class="font-normal text-gray-500">neil.sims@flowbite.com</div>
+                                    </div>
                                 </th>
                                 <td class="px-4 py-3">PC</td>
                                 <td class="px-4 py-3">Apple</td>
-                                <td class="px-4 py-3">300</td>
-                                <td class="px-4 py-3">$2999</td>
+                                <!-- <td class="px-4 py-3">300</td>
+                                <td class="px-4 py-3">$2999</td> -->
                                 <td class="px-4 py-3">Yes</td>
                                 <td class="px-4 py-3 flex items-center justify-end">
                                     <button id="apple-imac-31-dropdown-button"
@@ -392,8 +421,11 @@ import { RouterLink } from 'vue-router'
                                         <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
                                             aria-labelledby="apple-imac-31-dropdown-button">
                                             <li>
-                                                <a href="#"
-                                                    class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</a>
+                                                <a href="#" id="crud-modal" data-modal-target="crud-modal"
+                                                    data-modal-toggle="crud-modal" type="button"
+                                                    class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                                    Send notification
+                                                </a>
                                             </li>
                                             <li>
                                                 <a href="#"
@@ -417,15 +449,19 @@ import { RouterLink } from 'vue-router'
                                     </div>
                                 </td>
                                 <th scope="row"
-                                    class="flex items-center px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    <img src="https://flowbite.s3.amazonaws.com/blocks/application-ui/products/imac-front-image.png"
-                                        alt="iMac Front Image" class="w-auto h-8 mr-3">
-                                    Apple iMac 27&#34;
+                                    class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                    <img class="w-10 h-10 rounded-full"
+                                        src="https://cdn-icons-png.freepik.com/256/6323/6323096.png?semt=ais_hybrid"
+                                        alt="Jese image">
+                                    <div class="ps-3">
+                                        <div class="text-base font-semibold">Neil Sims</div>
+                                        <div class="font-normal text-gray-500">neil.sims@flowbite.com</div>
+                                    </div>
                                 </th>
                                 <td class="px-4 py-3">PC</td>
                                 <td class="px-4 py-3">Apple</td>
-                                <td class="px-4 py-3">300</td>
-                                <td class="px-4 py-3">$2999</td>
+                                <!-- <td class="px-4 py-3">300</td>
+                                <td class="px-4 py-3">$2999</td> -->
                                 <td class="px-4 py-3">Yes</td>
                                 <td class="px-4 py-3 flex items-center justify-end">
                                     <button id="apple-imac-32-dropdown-button"
@@ -443,8 +479,11 @@ import { RouterLink } from 'vue-router'
                                         <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
                                             aria-labelledby="apple-imac-32-dropdown-button">
                                             <li>
-                                                <a href="#"
-                                                    class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</a>
+                                                <a href="#" id="crud-modal" data-modal-target="crud-modal"
+                                                    data-modal-toggle="crud-modal" type="button"
+                                                    class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                                    Send notification
+                                                </a>
                                             </li>
                                             <li>
                                                 <a href="#"
@@ -468,15 +507,19 @@ import { RouterLink } from 'vue-router'
                                     </div>
                                 </td>
                                 <th scope="row"
-                                    class="flex items-center px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    <img src="https://flowbite.s3.amazonaws.com/blocks/application-ui/products/imac-front-image.png"
-                                        alt="iMac Front Image" class="w-auto h-8 mr-3">
-                                    Apple iMac 27&#34;
+                                    class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                    <img class="w-10 h-10 rounded-full"
+                                        src="https://cdn-icons-png.freepik.com/256/6323/6323096.png?semt=ais_hybrid"
+                                        alt="Jese image">
+                                    <div class="ps-3">
+                                        <div class="text-base font-semibold">Neil Sims</div>
+                                        <div class="font-normal text-gray-500">neil.sims@flowbite.com</div>
+                                    </div>
                                 </th>
                                 <td class="px-4 py-3">PC</td>
                                 <td class="px-4 py-3">Apple</td>
-                                <td class="px-4 py-3">300</td>
-                                <td class="px-4 py-3">$2999</td>
+                                <!-- <td class="px-4 py-3">300</td>
+                                <td class="px-4 py-3">$2999</td> -->
                                 <td class="px-4 py-3">No</td>
                                 <td class="px-4 py-3 flex items-center justify-end">
                                     <button id="apple-imac-33-dropdown-button"
@@ -494,8 +537,11 @@ import { RouterLink } from 'vue-router'
                                         <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
                                             aria-labelledby="apple-imac-33-dropdown-button">
                                             <li>
-                                                <a href="#"
-                                                    class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</a>
+                                                <a href="#" id="crud-modal" data-modal-target="crud-modal"
+                                                    data-modal-toggle="crud-modal" type="button"
+                                                    class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                                    Send notification
+                                                </a>
                                             </li>
                                             <li>
                                                 <a href="#"

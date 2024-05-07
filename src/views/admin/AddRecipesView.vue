@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { reactive } from 'vue';
+import { reactive, computed } from 'vue';
+import { marked } from 'marked'
+import { debounce } from 'lodash-es'
 import AdminLayout from '@/layouts/AdminLayout.vue';
 import type { Recipes } from '@/interface/recipes';
 
@@ -10,6 +12,14 @@ const recipeData = reactive<Recipes>({
     popular: false,
     description: ''
 });
+
+const output = computed(() => {
+    return marked(recipeData.description)
+})
+
+const update = debounce((e) => {
+    recipeData.description = e.target.value
+})
 
 const addRecipe = (): void => {
     console.log('Recipe data', recipeData);
@@ -89,17 +99,25 @@ const handleRecipeFile = (event: any) => {
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="12" required>
                     </div> -->
-                    <div class="sm:col-span-2">
+                    <div class="w-full">
                         <label for="description"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                        <textarea v-model="recipeData.description" id="description" rows="8"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description (Markdown)
+                        </label>
+                        <textarea v-model="recipeData.description" @input="update" id="description" rows="18"
                             class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Your description here"></textarea>
+                    </div>
+                    <div class="w-full">
+                        <label for="description"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Preview</label>
+                        <div v-html="output"
+                            class="prose prose-blockquote:dark:bg-gray-600 prose-blockquote:bg-gray-200 prose-img:rounded-xl md:prose-lg lg:prose-xl dark:prose-invert max-w-none dark:text-gray-100 prose-p text-gray-700 mb-4">
+                        </div>
                     </div>
                 </div>
                 <button type="submit"
                     class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
-                    Add product
+                    Add recipe
                 </button>
             </form>
         </div>

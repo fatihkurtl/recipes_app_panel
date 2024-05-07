@@ -1,11 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/admin/HomeView.vue'
+import AddRecipesView from '@/views/admin/AddRecipesView.vue'
 import EditRecipesView from '@/views/admin/EditRecipesView.vue'
 import DetailView from '@/views/admin/DetailView.vue'
+import UsersView from '@/views/admin/UsersView.vue'
 import AboutView from '@/views/admin/AboutView.vue'
-import LoginView from '@/views/auth/LoginView.vue'
 import ContactView from '@/views/admin/ContactView.vue'
-import AddRecipesView from '@/views/admin/AddRecipesView.vue'
+import LoginView from '@/views/auth/LoginView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -29,6 +30,11 @@ const router = createRouter({
       path: '/edit/:name',
       name: 'Edit Recipe',
       component: EditRecipesView
+    },
+    {
+      path: '/users',
+      name: 'Users',
+      component: UsersView
     },
     {
       path: '/about',
