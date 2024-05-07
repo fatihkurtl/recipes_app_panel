@@ -19,7 +19,7 @@ const output = computed(() => {
 
 const update = debounce((e) => {
     recipeData.description = e.target.value
-})
+}, 100)
 
 const addRecipe = (): void => {
     console.log('Recipe data', recipeData);
@@ -111,7 +111,7 @@ const handleRecipeFile = (event: any) => {
                         <label for="description"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Preview</label>
                         <div v-html="output"
-                            class="prose prose-blockquote:dark:bg-gray-600 prose-blockquote:bg-gray-200 prose-img:rounded-xl md:prose-lg lg:prose-xl dark:prose-invert max-w-none dark:text-gray-100 prose-p text-gray-700 mb-4">
+                            class="prose prose-blockquote:dark:bg-gray-600 prose-blockquote:bg-gray-200 prose-img:rounded-xl prose-hr prose-hr:bg-gray-900 md:prose-lg lg:prose-xl dark:prose-invert max-w-none dark:text-gray-100 prose-p text-gray-700 mb-4">
                         </div>
                     </div>
                 </div>

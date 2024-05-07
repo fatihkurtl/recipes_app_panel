@@ -19,7 +19,7 @@ const output = computed(() => {
 
 const update = debounce((e) => {
     recipeData.description = e.target.value
-})
+}, 100)
 
 const editRecipe = (): void => {
     console.log('Recipe data', recipeData);
