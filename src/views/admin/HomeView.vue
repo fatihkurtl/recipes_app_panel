@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import RecipesTable from "@/components/local/home/RecipesTable.vue";
-import RecipesCard from "@/components/local/home/RecipesCard.vue";
+import RecipesInfoCard from "@/components/local/home/RecipesInfoCard.vue";
 import AdminLayout from "@/layouts/AdminLayout.vue";
 
 console.log("API URL => ", import.meta.env.VITE_API_URL);
@@ -16,7 +16,7 @@ console.log("MODE => ", import.meta.env.MODE);
       </div>
 
       <div class="col-span-full md:col-span-2 lg:col-span-1 xl:col-span-1 p-3 sm:p-5">
-        <RecipesCard />
+        <RecipesInfoCard />
       </div>
     </div>
   </AdminLayout>
