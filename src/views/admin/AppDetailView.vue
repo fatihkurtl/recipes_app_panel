@@ -9,23 +9,26 @@ const carouselImagesPreview = ref<imagePreview[]>([])
 const drawerHeaderLogoPreview = ref<imagePreview[]>([])
 
 
-const handleCarouselImages = (event: Event): void => {
+const handleCarouselImages = (event: any): void => {
+    event.preventDefault()
     const target = event.target as HTMLInputElement
     const files = target.files
     const imagesRegex = /\.(jpeg|png|svg)$/i
     const maxSizeInBytes = 5242880; // 5MB
 
-    if (files && carouselImagesPreview.value.length <= 5) {
+    if (files && carouselImagesPreview.value.length < 5) {
         for (let i = 0; i < files.length; i++) {
             const file = files[i]
             const reader = new FileReader()
 
             if (!imagesRegex.test(file.name)) {
+                event.target.value = ''
                 alert('Only images are allowed to upload (jpeg, png, svg).')
                 return
             }
 
             if (file.size > maxSizeInBytes) {
+                event.target.value = ''
                 alert('File size is too large to upload. Max size is 5MB.')
                 return
             }
@@ -36,10 +39,13 @@ const handleCarouselImages = (event: Event): void => {
             }
             reader.readAsDataURL(file)
         }
+    } else {
+        alert('You can upload up to 5 images.')
     }
 }
 
-const handleDrawerHeaderImages = (event: Event): void => {
+const handleDrawerHeaderImages = (event: any): void => {
+    event.preventDefault()
     const target = event.target as HTMLInputElement
     const files = target.files
     const imagesRegex = /\.(jpeg|png|svg)$/i
@@ -51,11 +57,13 @@ const handleDrawerHeaderImages = (event: Event): void => {
             const reader = new FileReader()
 
             if (!imagesRegex.test(file.name)) {
+                event.target.value = ''
                 alert('Only images are allowed to upload (jpeg, png, svg).')
                 return
             }
 
             if (file.size > maxSizeInBytes) {
+                event.target.value = ''
                 alert('File size is too large to upload. Max size is 5MB.')
                 return
             }
@@ -124,7 +132,7 @@ const saveImages = (): void => {
                                         bırakın
                                     </p>
                                     <p class="text-xs text-gray-500 dark:text-gray-400">
-                                        SVG, PNG, JPG (MAX. 5MB).
+                                        SVG, PNG, JPEG (MAX. 5MB).
                                     </p>
                                 </div>
                                 <input @change="handleCarouselImages($event)" multiple accept="image/*"
