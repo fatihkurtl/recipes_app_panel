@@ -49,10 +49,18 @@ const handleRecipeFile = (event: any): void => {
     event.preventDefault()
     console.log('File', event.target.files);
     const imagesRegex = /\.(jpeg|png|svg)$/i
+    const maxSizeInBytes = 5242880; // 5MB
     if (!imagesRegex.test(event.target.files[0].name)) {
+        event.target.value = ''
         alert('Please select a valid image file')
         return
+    } else if (event.target.files[0].size > maxSizeInBytes) {
+        event.target.value = ''
+        alert('File size is too large (MAX. 5MB)')
+        return
+
     } else {
+        console.log(event.target.files[0].size / 1024 / 1024);
         switch (activeTab.value) {
             case 'tr':
                 recipeData.tr.thumbnail = event.target.files
@@ -126,9 +134,8 @@ const addRecipe = (): void => {
                             <input @change="handleRecipeFile($event)"
                                 class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                                 aria-describedby="file_input_help" id="file_input" type="file">
-                            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG
-                                or
-                                GIF (MAX. 800x400px).</p>
+                            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">
+                                SVG, PNG, JPG (MAX. 5MB).</p>
                         </div>
                         <div class="w-full">
                             <label for="category"
@@ -195,8 +202,7 @@ const addRecipe = (): void => {
                                 class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                                 aria-describedby="file_input_help" id="file_input" type="file">
                             <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG
-                                or
-                                GIF (MAX. 800x400px).</p>
+                                (MAX. 5MB).</p>
                         </div>
                         <div class="w-full">
                             <label for="category"

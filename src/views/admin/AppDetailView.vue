@@ -12,43 +12,60 @@ const drawerHeaderLogoPreview = ref<imagePreview[]>([])
 const handleCarouselImages = (event: Event): void => {
     const target = event.target as HTMLInputElement
     const files = target.files
+    const imagesRegex = /\.(jpeg|png|svg)$/i
+    const maxSizeInBytes = 5242880; // 5MB
 
-    if (files && carouselImagesPreview.value.length < 5) {
+    if (files && carouselImagesPreview.value.length <= 5) {
         for (let i = 0; i < files.length; i++) {
             const file = files[i]
             const reader = new FileReader()
+
+            if (!imagesRegex.test(file.name)) {
+                alert('Only images are allowed to upload (jpeg, png, svg).')
+                return
+            }
+
+            if (file.size > maxSizeInBytes) {
+                alert('File size is too large to upload. Max size is 5MB.')
+                return
+            }
 
             reader.onload = (e) => {
                 const url = e.target?.result as string
                 carouselImagesPreview.value.push({ url, name: file.name })
             }
-
             reader.readAsDataURL(file)
         }
-
-    } else {
-        alert('You can only upload 5 images')
     }
 }
 
 const handleDrawerHeaderImages = (event: Event): void => {
     const target = event.target as HTMLInputElement
     const files = target.files
+    const imagesRegex = /\.(jpeg|png|svg)$/i
+    const maxSizeInBytes = 5242880; // 5MB
 
     if (files && drawerHeaderLogoPreview.value.length <= 1) {
         for (let i = 0; i < files.length; i++) {
             const file = files[i]
             const reader = new FileReader()
 
+            if (!imagesRegex.test(file.name)) {
+                alert('Only images are allowed to upload (jpeg, png, svg).')
+                return
+            }
+
+            if (file.size > maxSizeInBytes) {
+                alert('File size is too large to upload. Max size is 5MB.')
+                return
+            }
+
             reader.onload = (e) => {
                 const url = e.target?.result as string
                 drawerHeaderLogoPreview.value.push({ url, name: file.name })
             }
-            drawerHeaderLogoPreview.value = []
             reader.readAsDataURL(file)
-            console.log(drawerHeaderLogoPreview.value);
         }
-
     }
 }
 
@@ -79,7 +96,7 @@ const saveImages = (): void => {
                                 class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                                 aria-describedby="file_input_help" id="file_input" type="file">
                             <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">
-                                SVG, PNG, JPG or GIF (MAX. 800x400px).
+                                SVG, PNG, JPG (MAX. 5MB).
                             </p>
                             <div v-if="drawerHeaderLogoPreview.length > 0" class="relative w-full">
                                 <img v-for="(images, index) in drawerHeaderLogoPreview" :key="index"
@@ -106,8 +123,8 @@ const saveImages = (): void => {
                                             class="font-semibold">Yüklemek için tıklayın</span> veya sürükleyip
                                         bırakın
                                     </p>
-                                    <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG (MAX.
-                                        800x400px)
+                                    <p class="text-xs text-gray-500 dark:text-gray-400">
+                                        SVG, PNG, JPG (MAX. 5MB).
                                     </p>
                                 </div>
                                 <input @change="handleCarouselImages($event)" multiple accept="image/*"
