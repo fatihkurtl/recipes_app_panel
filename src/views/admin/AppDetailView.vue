@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import AdminLayout from '@/layouts/AdminLayout.vue';
+import ButtonLayout from '@/layouts/global/forms/ButtonLayout.vue';
 import type { imagePreview } from '@/interface/app_detail';
 
 
@@ -25,6 +26,8 @@ const handleCarouselImages = (event: Event): void => {
             reader.readAsDataURL(file)
         }
 
+    } else {
+        alert('You can only upload 5 images')
     }
 }
 
@@ -32,7 +35,7 @@ const handleDrawerHeaderImages = (event: Event): void => {
     const target = event.target as HTMLInputElement
     const files = target.files
 
-    if (files && drawerHeaderLogoPreview.value.length < 1) {
+    if (files && drawerHeaderLogoPreview.value.length <= 1) {
         for (let i = 0; i < files.length; i++) {
             const file = files[i]
             const reader = new FileReader()
@@ -41,8 +44,9 @@ const handleDrawerHeaderImages = (event: Event): void => {
                 const url = e.target?.result as string
                 drawerHeaderLogoPreview.value.push({ url, name: file.name })
             }
-
+            drawerHeaderLogoPreview.value = []
             reader.readAsDataURL(file)
+            console.log(drawerHeaderLogoPreview.value);
         }
 
     }
@@ -53,15 +57,16 @@ const removeImage = (index: number): void => {
 }
 
 const saveImages = (): void => {
-    console.log(carouselImagesPreview.value)
+    console.log('carouselImagesPreview', carouselImagesPreview.value)
+    console.log('drawerHeaderLogoPreview', drawerHeaderLogoPreview.value)
 }
 
 </script>
 
 <template>
     <AdminLayout>
-        <div class="rounded-lg bg-white dark:bg-gray-800 md:pl-70 shadow-md sm:rounded-lg overflow-hidden">
-            <div class="py-8 px-4 mx-auto lg:py-6"> <!-- max-w-2xl lg:py-16 -->
+        <div class="dark:bg-gray-800 py-8 px-4 mx-auto max-w-3xl lg:py-16">
+            <div class="bg-white rounded-lg py-8 px-4 mx-auto lg:py-6"> <!-- max-w-2xl lg:py-16 -->
                 <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">App Detail Settings</h2>
                 <form @submit.prevent="saveImages">
                     <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
@@ -76,6 +81,11 @@ const saveImages = (): void => {
                             <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">
                                 SVG, PNG, JPG or GIF (MAX. 800x400px).
                             </p>
+                            <div v-if="drawerHeaderLogoPreview.length > 0" class="relative w-full">
+                                <img v-for="(images, index) in drawerHeaderLogoPreview" :key="index"
+                                    class="h-48 aspect-video rounded-sm object-cover object-center dark:bg-gray-500"
+                                    :src="images.url" :alt="images.name">
+                            </div>
                         </div>
                         <div class="sm:col-span-2" @dragover.prevent @dragenter.prevent
                             @drop="handleCarouselImages($event)">
@@ -104,7 +114,11 @@ const saveImages = (): void => {
                                     id="dropzone-file" type="file" class="hidden" />
                             </label>
                         </div>
-                        <section v-if="carouselImagesPreview.length > 0" class="bg-white dark:bg-gray-900">
+                        <section v-if="carouselImagesPreview.length > 0" class="dark:bg-gray-900">
+                            <label for="carousel-slider-images"
+                                class="block mb-4 text-sm font-medium text-gray-900 dark:text-white">
+                                Carousel Slider Preview
+                            </label>
                             <div class="text-center">
                                 <div class="grid gap-12 lg:gap-28 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
                                     <div v-for="(image, index) in carouselImagesPreview" :key="index"
@@ -130,6 +144,11 @@ const saveImages = (): void => {
                             </div>
                         </section>
                     </div>
+                    <ButtonLayout>
+                        <template #form-button>
+                            Save Images
+                        </template>
+                    </ButtonLayout>
                 </form>
             </div>
         </div>
