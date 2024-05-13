@@ -2,6 +2,7 @@
 import UsersTable from '@/components/local/users/UsersTable.vue';
 import UsersInfoCard from '@/components/local/users/UsersInfoCard.vue';
 import AdminLayout from '@/layouts/AdminLayout.vue';
+import LatestUsersCard from '@/components/local/users/LatestUsersCard.vue';
 
 
 </script>
@@ -15,6 +16,10 @@ import AdminLayout from '@/layouts/AdminLayout.vue';
 
             <div class="col-span-full md:col-span-2 lg:col-span-1 xl:col-span-1 p-3 sm:p-5">
                 <UsersInfoCard />
+
+                <!-- users card -->
+                <LatestUsersCard />
+                <!-- users card -->
             </div>
         </div>
     </AdminLayout>
