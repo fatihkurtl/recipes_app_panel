@@ -48,13 +48,19 @@ const update = debounce((e) => {
 const handleRecipeFile = (event: any): void => {
     event.preventDefault()
     console.log('File', event.target.files);
-    switch (activeTab.value) {
-        case 'tr':
-            recipeData.tr.thumbnail = event.target.files
-            break;
-        case 'en':
-            recipeData.en.thumbnail = event.target.files
-            break;
+    const imagesRegex = /\.(jpeg|png|svg)$/i
+    if (!imagesRegex.test(event.target.files[0].name)) {
+        alert('Please select a valid image file')
+        return
+    } else {
+        switch (activeTab.value) {
+            case 'tr':
+                recipeData.tr.thumbnail = event.target.files
+                break;
+            case 'en':
+                recipeData.en.thumbnail = event.target.files
+                break;
+        }
     }
 }
 
