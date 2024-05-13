@@ -5,6 +5,7 @@ import type { NotificationSendType } from '@/interface/notification';
 import { sendNotification } from '@/services/web_socket';
 
 
+// burayi da tr & en ayarla
 const notificationData = reactive<NotificationSendType>({
     title: '',
     thumbnail: [],
