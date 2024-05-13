@@ -8,6 +8,7 @@ import RecipesView from '@/views/admin/RecipesView.vue'
 import AppDetailView from '@/views/admin/AppDetailView.vue'
 import ContactView from '@/views/admin/ContactView.vue'
 import LoginView from '@/views/auth/LoginView.vue'
+import Error404View from '@/views/error/Error404View.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -56,6 +57,11 @@ const router = createRouter({
       path: '/login',
       name: 'Login',
       component: LoginView
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'NotFound',
+      component: Error404View
     }
   ]
 })

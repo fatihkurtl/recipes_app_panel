@@ -29,6 +29,9 @@ importers:
       postcss:
         specifier: ^8.4.38
         version: 8.4.38
+      sweetalert2:
+        specifier: ^11.11.0
+        version: 11.11.0
       tailwindcss:
         specifier: ^3.4.3
         version: 3.4.3
@@ -38,6 +41,9 @@ importers:
       vue-router:
         specifier: ^4.3.0
         version: 4.3.2(vue@3.4.26(typescript@5.4.5))
+      vue-sweetalert2:
+        specifier: ^5.0.9
+        version: 5.0.9(vue@3.4.26(typescript@5.4.5))
     devDependencies:
       '@rushstack/eslint-patch':
         specifier: ^1.8.0
@@ -1405,6 +1411,12 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
+  sweetalert2@11.11.0:
+    resolution: {integrity: sha512-wKCTtoE6lQVDKaJ5FFq+znk/YykJmJlD8RnLZps8C7DyivctCoRlVeeOwnKfgwKS+QJYon7s++3dmNi3/am1tw==}
+
+  sweetalert2@11.4.4:
+    resolution: {integrity: sha512-9yYWQuRT1v9JNI/paPTSYV+68MHwe9C+HQ/I2jtfaFzoJgYRftWXOs4JqmDSjT7m2m4r8ebMMn8LcxD1Wq9B/w==}
+
   synckit@0.8.8:
     resolution: {integrity: sha512-HwOKAP7Wc5aRGYdKH+dw0PRRpbO841v2DENBtjnR5HFWoiNByAl7vrx3p0G/rCyYXQsrxqtX48TImFtPcIHSpQ==}
     engines: {node: ^14.18.0 || >=16.0.0}
@@ -1521,6 +1533,11 @@ packages:
     resolution: {integrity: sha512-hKQJ1vDAZ5LVkKEnHhmm1f9pMiWIBNGF5AwU67PdH7TyXCj/a4hTccuUuYCAMgJK6rO/NVYtQIEN3yL8CECa7Q==}
     peerDependencies:
       vue: ^3.2.0
+
+  vue-sweetalert2@5.0.9:
+    resolution: {integrity: sha512-NnFvi9IAFKYPuRgjhGekp0DjY2wUdXMhKQURbXhqcAyxtaBWqLMvlV8HxCs3y8RL1MMOgTR6VKHzI+DO1j0NQQ==}
+    peerDependencies:
+      vue: '*'
 
   vue-template-compiler@2.7.16:
     resolution: {integrity: sha512-AYbUWAJHLGGQM7+cNTELw+KsOG9nl2CnSv467WobS5Cv9uk3wFcnr1Etsz2sEIHEZvw1U+o9mRlEO6QbZvUPGQ==}
@@ -2832,6 +2849,10 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
+  sweetalert2@11.11.0: {}
+
+  sweetalert2@11.4.4: {}
+
   synckit@0.8.8:
     dependencies:
       '@pkgr/core': 0.1.1
@@ -2939,6 +2960,11 @@ snapshots:
   vue-router@4.3.2(vue@3.4.26(typescript@5.4.5)):
     dependencies:
       '@vue/devtools-api': 6.6.1
+      vue: 3.4.26(typescript@5.4.5)
+
+  vue-sweetalert2@5.0.9(vue@3.4.26(typescript@5.4.5)):
+    dependencies:
+      sweetalert2: 11.4.4
       vue: 3.4.26(typescript@5.4.5)
 
   vue-template-compiler@2.7.16:

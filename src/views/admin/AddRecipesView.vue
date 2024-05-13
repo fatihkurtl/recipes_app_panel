@@ -5,6 +5,7 @@ import { debounce } from 'lodash-es'
 import AdminLayout from '@/layouts/AdminLayout.vue';
 import ButtonLayout from '@/layouts/local/forms/ButtonLayout.vue';
 import type { Recipes } from '@/interface/recipes';
+import useSwal from '@/composables/useSwal';
 
 const recipeData = reactive<Recipes>({
     tr: {
@@ -72,13 +73,14 @@ const handleRecipeFile = (event: any): void => {
     }
 }
 
-const addRecipe = (): void => {
+
+const handleForm = (): void => {
     const formDataTr = new FormData()
-    formDataTr.append('tr_title', recipeData.tr.title)
-    formDataTr.append('tr_thumbnail', recipeData.tr.thumbnail[0])
-    formDataTr.append('tr_category', recipeData.tr.category)
-    formDataTr.append('tr_popular', recipeData.tr.popular.toString())
-    formDataTr.append('tr_description', recipeData.tr.description)
+    formDataTr.append('title', recipeData.tr.title)
+    formDataTr.append('thumbnail', recipeData.tr.thumbnail[0])
+    formDataTr.append('category', recipeData.tr.category)
+    formDataTr.append('popular', recipeData.tr.popular.toString())
+    formDataTr.append('description', recipeData.tr.description)
     const formDataEn = new FormData()
     formDataEn.append('en_title', recipeData.en.title)
     formDataEn.append('en_thumbnail', recipeData.en.thumbnail[0])
@@ -91,6 +93,15 @@ const addRecipe = (): void => {
     console.log(activeTab.value);
 }
 
+const { success, confirm } = useSwal()
+
+const addRecipe = async () => {
+    const result = await confirm('Are you sure?', "You won't be able to revert this!", 'warning')
+    if (result) {
+        await success('Recipe added successfully')
+        handleForm()
+    }
+}
 
 </script>
 
@@ -135,7 +146,8 @@ const addRecipe = (): void => {
                                 class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                                 aria-describedby="file_input_help" id="file_input" type="file">
                             <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">
-                                SVG, PNG, JPG (MAX. 5MB).</p>
+                                SVG, PNG, JPG (MAX. 5MB).
+                            </p>
                         </div>
                         <div class="w-full">
                             <label for="category"

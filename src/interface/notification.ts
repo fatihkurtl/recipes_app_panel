@@ -4,3 +4,8 @@ export interface NotificationSendType {
   category: string
   description: string
 }
+
+export interface INotification {
+  tr: NotificationSendType
+  en: NotificationSendType
+}
