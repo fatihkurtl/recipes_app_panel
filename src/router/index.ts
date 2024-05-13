@@ -5,6 +5,7 @@ import AddRecipesView from '@/views/admin/AddRecipesView.vue'
 import EditRecipesView from '@/views/admin/EditRecipesView.vue'
 import UsersView from '@/views/admin/UsersView.vue'
 import RecipesView from '@/views/admin/RecipesView.vue'
+import AppDetailView from '@/views/admin/AppDetailView.vue'
 import ContactView from '@/views/admin/ContactView.vue'
 import LoginView from '@/views/auth/LoginView.vue'
 
@@ -15,6 +16,11 @@ const router = createRouter({
       path: '/',
       name: 'Home',
       component: HomeView
+    },
+    {
+      path: '/recipes',
+      name: 'Recipes',
+      component: RecipesView
     },
     {
       path: '/recipes/:name',
@@ -37,9 +43,9 @@ const router = createRouter({
       component: UsersView
     },
     {
-      path: '/recipes',
-      name: 'Recipes',
-      component: RecipesView
+      path: '/app/detail',
+      name: 'App Detail',
+      component: AppDetailView
     },
     {
       path: '/contact',

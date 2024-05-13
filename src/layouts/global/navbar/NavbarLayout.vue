@@ -36,7 +36,9 @@ const logOut = () => {
                     <li>
                         <RouterLink to="/"
                             class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                            aria-current="page">Home</RouterLink>
+                            aria-current="page">
+                            Home
+                        </RouterLink>
                     </li>
                     <li>
                         <RouterLink to="/recipes"
@@ -47,12 +49,20 @@ const logOut = () => {
                     <li>
                         <RouterLink to="/users"
                             class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-                            Users</RouterLink>
+                            Users
+                        </RouterLink>
+                    </li>
+                    <li>
+                        <RouterLink to="/app/detail"
+                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                            App
+                        </RouterLink>
                     </li>
                     <li>
                         <RouterLink to="/contact"
                             class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-                            Contact</RouterLink>
+                            Contact
+                        </RouterLink>
                     </li>
                     <li>
                         <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar"
