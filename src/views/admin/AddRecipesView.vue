@@ -3,19 +3,19 @@ import { ref, reactive, computed } from 'vue';
 import { marked } from 'marked'
 import { debounce } from 'lodash-es'
 import AdminLayout from '@/layouts/AdminLayout.vue';
-import ButtonLayout from '@/layouts/global/forms/ButtonLayout.vue';
+import ButtonLayout from '@/layouts/local/forms/ButtonLayout.vue';
 import type { Recipes } from '@/interface/recipes';
 
 const recipeData = reactive<Recipes>({
     tr: {
-        name: '',
+        title: '',
         thumbnail: [],
         category: '',
         popular: false,
         description: ''
     },
     en: {
-        name: '',
+        title: '',
         thumbnail: [],
         category: '',
         popular: false,
@@ -59,6 +59,20 @@ const handleRecipeFile = (event: any): void => {
 }
 
 const addRecipe = (): void => {
+    const formDataTr = new FormData()
+    formDataTr.append('tr_title', recipeData.tr.title)
+    formDataTr.append('tr_thumbnail', recipeData.tr.thumbnail[0])
+    formDataTr.append('tr_category', recipeData.tr.category)
+    formDataTr.append('tr_popular', recipeData.tr.popular.toString())
+    formDataTr.append('tr_description', recipeData.tr.description)
+    const formDataEn = new FormData()
+    formDataEn.append('en_title', recipeData.en.title)
+    formDataEn.append('en_thumbnail', recipeData.en.thumbnail[0])
+    formDataEn.append('en_category', recipeData.en.category)
+    formDataEn.append('en_popular', recipeData.en.popular.toString())
+    formDataEn.append('en_description', recipeData.en.description)
+    console.log('TR Form Data', formDataTr);
+    console.log('EN Form Data', formDataEn);
     console.log('Recipe data', recipeData);
     console.log(activeTab.value);
 }
@@ -95,7 +109,7 @@ const addRecipe = (): void => {
                             <label for="name"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Recipe
                                 Name</label>
-                            <input v-model="recipeData.tr.name" type="text" name="name" id="name"
+                            <input v-model="recipeData.tr.title" type="text" name="name" id="name"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="Type recipe name" required>
                         </div>
@@ -163,7 +177,7 @@ const addRecipe = (): void => {
                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                 Recipe Name
                             </label>
-                            <input v-model="recipeData.en.name" type="text" name="name" id="name"
+                            <input v-model="recipeData.en.title" type="text" name="name" id="name"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="Type recipe name" required>
                         </div>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import AdminLayout from '@/layouts/AdminLayout.vue';
-import ButtonLayout from '@/layouts/global/forms/ButtonLayout.vue';
+import ButtonLayout from '@/layouts/local/forms/ButtonLayout.vue';
 import type { imagePreview } from '@/interface/app_detail';
 
 

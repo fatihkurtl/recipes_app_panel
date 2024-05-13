@@ -1,5 +1,5 @@
 export interface Recipe {
-  name: string
+  title: string
   thumbnail: File[]
   category: string
   popular: boolean
