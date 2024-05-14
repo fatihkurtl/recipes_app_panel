@@ -3,11 +3,13 @@ import { ref } from 'vue';
 import AdminLayout from '@/layouts/AdminLayout.vue';
 import ButtonLayout from '@/layouts/local/forms/ButtonLayout.vue';
 import type { imagePreview } from '@/interface/app_detail';
+import useSwal from '@/composables/useSwal';
 
+
+const { success, confirm, warning } = useSwal()
 
 const carouselImagesPreview = ref<imagePreview[]>([])
 const drawerHeaderLogoPreview = ref<imagePreview[]>([])
-
 
 const handleCarouselImages = (event: any): void => {
     event.preventDefault()
@@ -15,24 +17,20 @@ const handleCarouselImages = (event: any): void => {
     const files = target.files
     const imagesRegex = /\.(jpeg|png|svg)$/i
     const maxSizeInBytes = 5242880; // 5MB
-
     if (files && carouselImagesPreview.value.length < 5) {
         for (let i = 0; i < files.length; i++) {
             const file = files[i]
             const reader = new FileReader()
-
             if (!imagesRegex.test(file.name)) {
                 event.target.value = ''
-                alert('Only images are allowed to upload (jpeg, png, svg).')
+                warning('Only images are allowed to upload (jpeg, png, svg).')
                 return
             }
-
             if (file.size > maxSizeInBytes) {
                 event.target.value = ''
-                alert('File size is too large to upload. Max size is 5MB.')
+                warning('File size is too large to upload. Max size is 5MB.')
                 return
             }
-
             reader.onload = (e) => {
                 const url = e.target?.result as string
                 carouselImagesPreview.value.push({ url, name: file.name })
@@ -40,40 +38,39 @@ const handleCarouselImages = (event: any): void => {
             reader.readAsDataURL(file)
         }
     } else {
-        alert('You can upload up to 5 images.')
+        warning('You can upload up to 5 images.')
     }
 }
 
 const handleDrawerHeaderImages = (event: any): void => {
     event.preventDefault()
+    drawerHeaderLogoPreview.value = []
     const target = event.target as HTMLInputElement
     const files = target.files
     const imagesRegex = /\.(jpeg|png|svg)$/i
     const maxSizeInBytes = 5242880; // 5MB
-
-    if (files && drawerHeaderLogoPreview.value.length <= 1) {
+    if (files && drawerHeaderLogoPreview.value.length < 1) {
         for (let i = 0; i < files.length; i++) {
             const file = files[i]
             const reader = new FileReader()
-
             if (!imagesRegex.test(file.name)) {
                 event.target.value = ''
-                alert('Only images are allowed to upload (jpeg, png, svg).')
+                warning('Only images are allowed to upload (jpeg, png, svg).')
                 return
             }
-
             if (file.size > maxSizeInBytes) {
                 event.target.value = ''
-                alert('File size is too large to upload. Max size is 5MB.')
+                warning('File size is too large to upload. Max size is 5MB.')
                 return
             }
-
             reader.onload = (e) => {
                 const url = e.target?.result as string
                 drawerHeaderLogoPreview.value.push({ url, name: file.name })
             }
             reader.readAsDataURL(file)
         }
+    } else {
+        warning('You can upload only one image.')
     }
 }
 
@@ -81,9 +78,17 @@ const removeImage = (index: number): void => {
     carouselImagesPreview.value.splice(index, 1)
 }
 
-const saveImages = (): void => {
+const handleImages = (): void => {
     console.log('carouselImagesPreview', carouselImagesPreview.value)
     console.log('drawerHeaderLogoPreview', drawerHeaderLogoPreview.value)
+}
+
+const saveImages = async () => {
+    const result = await confirm('Are you sure?', "You won't be able to revert this!", 'warning')
+    if (result) {
+        await success('Recipe added successfully')
+        handleImages()
+    }
 }
 
 </script>

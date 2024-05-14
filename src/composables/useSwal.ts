@@ -1,6 +1,19 @@
 import Swal from 'sweetalert2'
 
 export default function useSwal() {
+  const confirm = async (title: string, text: string, icon: any) => {
+    const result = await Swal.fire({
+      title,
+      text,
+      icon,
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'No'
+    })
+
+    return result.isConfirmed
+  }
+
   const success = async (message: string) => {
     await Swal.fire({
       icon: 'success',
@@ -39,19 +52,6 @@ export default function useSwal() {
       showConfirmButton: false,
       timer: 1500
     })
-  }
-
-  const confirm = async (title: string, text: string, icon: any) => {
-    const result = await Swal.fire({
-      title,
-      text,
-      icon,
-      showCancelButton: true,
-      confirmButtonText: 'Yes',
-      cancelButtonText: 'No'
-    })
-
-    return result.isConfirmed
   }
 
   return {

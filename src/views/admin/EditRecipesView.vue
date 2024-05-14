@@ -5,6 +5,7 @@ import { debounce } from 'lodash-es'
 import AdminLayout from '@/layouts/AdminLayout.vue';
 import ButtonLayout from '@/layouts/local/forms/ButtonLayout.vue';
 import type { Recipes } from '@/interface/recipes';
+import useSwal from '@/composables/useSwal';
 
 const recipeData = reactive<Recipes>({
     tr: {
@@ -33,7 +34,6 @@ const output = computed(() => {
     }
 })
 
-
 const update = debounce((e) => {
     switch (activeTab.value) {
         case 'tr':
@@ -47,7 +47,6 @@ const update = debounce((e) => {
 
 const handleRecipeFile = (event: any): void => {
     event.preventDefault()
-    console.log('File', event.target.files);
     const imagesRegex = /\.(jpeg|png|svg)$/i
     const maxSizeInBytes = 5242880; // 5MB
     if (!imagesRegex.test(event.target.files[0].name)) {
@@ -58,9 +57,7 @@ const handleRecipeFile = (event: any): void => {
         event.target.value = ''
         alert('File size is too large (MAX. 5MB)')
         return
-
     } else {
-        console.log(event.target.files[0].size / 1024 / 1024);
         switch (activeTab.value) {
             case 'tr':
                 recipeData.tr.thumbnail = event.target.files
@@ -72,7 +69,7 @@ const handleRecipeFile = (event: any): void => {
     }
 }
 
-const addRecipe = (): void => {
+const handleForm = (): void => {
     const formDataTr = new FormData()
     formDataTr.append('title', recipeData.tr.title)
     formDataTr.append('thumbnail', recipeData.tr.thumbnail[0])
@@ -87,16 +84,24 @@ const addRecipe = (): void => {
     formDataEn.append('en_description', recipeData.en.description)
     console.log('TR Form Data', formDataTr);
     console.log('EN Form Data', formDataEn);
-    console.log('Recipe data', recipeData);
     console.log(activeTab.value);
 }
 
+const { success, confirm } = useSwal()
+
+const editRecipe = async () => {
+    const result = await confirm('Are you sure?', "You won't be able to revert this!", 'warning')
+    if (result) {
+        await success('Recipe added successfully')
+        handleForm()
+    }
+}
 
 </script>
 
 <template>
     <AdminLayout>
-        <div class="dark:bg-gray-800 rounded-lg py-8 px-4 mx-auto max-w-3xl lg:py-16">
+        <div class="bg-white dark:bg-gray-800 rounded-lg py-8 px-4 mx-auto max-w-3xl lg:py-16">
             <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Edit recipe</h2>
             <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
                 <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-tab"
@@ -116,7 +121,7 @@ const addRecipe = (): void => {
                 </ul>
             </div>
             <div id="default-tab-content">
-                <form @submit.prevent="addRecipe" class="space-y-8" id="tr-form" role="tabpanel"
+                <form @submit.prevent="editRecipe" class="space-y-8" id="tr-form" role="tabpanel"
                     aria-labelledby="tr-tab">
                     <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                         <div class="sm:col-span-2">
@@ -184,7 +189,7 @@ const addRecipe = (): void => {
                     </ButtonLayout>
                 </form>
                 <!-- English Form -->
-                <form @submit.prevent="addRecipe" class="space-y-8" id="en-form" role="tabpanel"
+                <form @submit.prevent="editRecipe" class="space-y-8" id="en-form" role="tabpanel"
                     aria-labelledby="en-tab">
                     <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                         <div class="sm:col-span-2">

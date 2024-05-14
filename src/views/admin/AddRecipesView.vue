@@ -34,7 +34,6 @@ const output = computed(() => {
     }
 })
 
-
 const update = debounce((e) => {
     switch (activeTab.value) {
         case 'tr':
@@ -48,7 +47,6 @@ const update = debounce((e) => {
 
 const handleRecipeFile = (event: any): void => {
     event.preventDefault()
-    console.log('File', event.target.files);
     const imagesRegex = /\.(jpeg|png|svg)$/i
     const maxSizeInBytes = 5242880; // 5MB
     if (!imagesRegex.test(event.target.files[0].name)) {
@@ -59,9 +57,7 @@ const handleRecipeFile = (event: any): void => {
         event.target.value = ''
         alert('File size is too large (MAX. 5MB)')
         return
-
     } else {
-        console.log(event.target.files[0].size / 1024 / 1024);
         switch (activeTab.value) {
             case 'tr':
                 recipeData.tr.thumbnail = event.target.files
@@ -72,7 +68,6 @@ const handleRecipeFile = (event: any): void => {
         }
     }
 }
-
 
 const handleForm = (): void => {
     const formDataTr = new FormData()
@@ -89,7 +84,6 @@ const handleForm = (): void => {
     formDataEn.append('en_description', recipeData.en.description)
     console.log('TR Form Data', formDataTr);
     console.log('EN Form Data', formDataEn);
-    console.log('Recipe data', recipeData);
     console.log(activeTab.value);
 }
 
@@ -107,7 +101,7 @@ const addRecipe = async () => {
 
 <template>
     <AdminLayout>
-        <div class="dark:bg-gray-800 rounded-lg py-8 px-4 mx-auto max-w-3xl lg:py-16">
+        <div class="bg-white dark:bg-gray-800 rounded-lg py-8 px-4 mx-auto max-w-3xl lg:py-16">
             <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Add a new recipe</h2>
             <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
                 <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-tab"

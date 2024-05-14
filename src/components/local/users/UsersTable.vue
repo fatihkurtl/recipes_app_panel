@@ -93,16 +93,16 @@ import NotificationIcon from './NotificationIcon.vue';
                                 <h6 class="mb-3 text-sm font-medium text-gray-900 dark:text-white">Choose status</h6>
                                 <ul class="space-y-2 text-sm" aria-labelledby="filterDropdownButton">
                                     <li class="flex items-center">
-                                        <input id="apple" type="checkbox" value=""
+                                        <input id="active" type="checkbox" value=""
                                             class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-blue-600 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                        <label for="apple"
+                                        <label for="active"
                                             class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">Active
                                             (56)</label>
                                     </li>
                                     <li class="flex items-center">
-                                        <input id="fitbit" type="checkbox" value=""
+                                        <input id="inactive" type="checkbox" value=""
                                             class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-blue-600 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                        <label for="fitbit"
+                                        <label for="inactive"
                                             class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">Inactive
                                             (16)</label>
                                     </li>

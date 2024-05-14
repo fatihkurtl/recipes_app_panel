@@ -3,9 +3,9 @@ import { ref, reactive } from 'vue';
 import NotificationIcon from './NotificationIcon.vue';
 import type { INotification } from '@/interface/notification';
 import { sendNotification } from '@/services/web_socket';
+import useSwal from '@/composables/useSwal';
 
 
-// burayi da tr & en ayarla
 const notificationData = reactive<INotification>({
     tr: {
         title: '',
@@ -23,8 +23,19 @@ const notificationData = reactive<INotification>({
 
 const activeTab = ref<string>('tr')
 
+// TODO! simdilik form data olmadan
 const handleNotification = () => {
     console.log('Notification data', notificationData);
+    // const formData = new FormData()
+    // formData.append('title', notificationData.tr.title)
+    // formData.append('thumbnail', notificationData.tr.thumbnail[0])
+    // formData.append('category', notificationData.tr.category)
+    // formData.append('description', notificationData.tr.description)
+    // const formDataEn = new FormData()
+    // formDataEn.append('en_title', notificationData.en.title)
+    // formDataEn.append('en_thumbnail', notificationData.en.thumbnail[0])
+    // formDataEn.append('en_category', notificationData.en.category)
+    // formDataEn.append('en_description', notificationData.en.description)
     sendNotification(notificationData)
 }
 
@@ -54,6 +65,17 @@ const handleNofiticationFile = (event: any) => {
         }
     }
 }
+
+const { success, confirm } = useSwal()
+
+const sendPushNotification = async () => {
+    const result = await confirm('Are you sure?', "You won't be able to revert this!", 'warning')
+    if (result) {
+        await success('Recipe added successfully')
+        handleNotification()
+    }
+}
+
 </script>
 
 <template>
@@ -96,7 +118,7 @@ const handleNofiticationFile = (event: any) => {
                     </ul>
                 </div>
                 <!-- Modal body -->
-                <form @submit.prevent="handleNotification" class="p-4 md:p-5" id="tr-form" role="tabpanel"
+                <form @submit.prevent="sendPushNotification" class="p-4 md:p-5" id="tr-form" role="tabpanel"
                     aria-labelledby="tr-tab">
                     <div class="grid gap-4 mb-4 grid-cols-2">
                         <div class="col-span-2">
@@ -150,7 +172,7 @@ const handleNofiticationFile = (event: any) => {
                     </button>
                 </form>
                 <!-- English Notification Form -->
-                <form @submit.prevent="handleNotification" class="p-4 md:p-5" id="en-form" role="tabpanel"
+                <form @submit.prevent="sendPushNotification" class="p-4 md:p-5" id="en-form" role="tabpanel"
                     aria-labelledby="en-tab">
                     <div class="grid gap-4 mb-4 grid-cols-2">
                         <div class="col-span-2">
