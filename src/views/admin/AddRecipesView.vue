@@ -97,6 +97,11 @@ const addRecipe = async () => {
     }
 }
 
+
+function handleButtonClick(payload: string) {
+    console.log('Received event from ButtonComponent:', payload);
+}
+
 </script>
 
 <template>
@@ -182,7 +187,7 @@ const addRecipe = async () => {
                             </div>
                         </div>
                     </div>
-                    <ButtonLayout>
+                    <ButtonLayout @btnClick="handleButtonClick">
                         <template #form-button>
                             Add recipe
                         </template>
